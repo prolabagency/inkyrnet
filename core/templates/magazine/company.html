@@ -1,0 +1,69 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+
+                <div class="card card-profile">
+                    <div class="photo">
+                        <img src="{{ company.logo.url }}">
+                    </div>
+                    <div class="card-avatar">
+                        <a href="{{ company.get_absolute_url }}">
+                            <img class="img" src="{{ company.logo.url }}"/>
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <h6 class="category"><a href="{{ company.site }}">{{ company.site }}</a></h6>
+                        <h4 class="card-title"></h4>
+                        <div class="description">{{ company.description|safe }}</div>
+                        <a href="#pablo" class="btn btn-rose btn-round">Follow</a>
+                    </div>
+                    <div class="card-footer">
+                        <ul class="nav">
+                            <li>
+                                <a href="">Статии<span class="pull-right">{{ articles.count }}</span></a>
+                            </li>
+                            <li>
+                                <a href="#pablo">Ивенты<span class="pull-right ">5</span></a>
+                            </li>
+                            <li>
+                                <a href="#pablo">Ваканции<span class="pull-right ">0</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-8">
+                {% for article in articles %}
+                    <div class="card">
+                        <div class="card-content">
+                            <small class="category">{{ article.created_at }}<a
+                                    href="user/@{{ article.author }}">
+                                @Alimov Tillo</a></small>
+                            <a href="{{ article.get_absolute_url }}"><h4
+                                    class="card-title">{{ article.title }}</h4>
+                            </a>
+                            <p>{{ article.description|striptags|truncatechars:150 }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <a href=""><i class="material-icons">bookmark_border</i></a>
+                            </div>
+                            <div class="stats">
+                                <i class="material-icons">thumb_up</i> {{ article.likes }}</div>
+                            <div class="stats pull-right">
+                                <p class="category"><i
+                                        class="material-icons">category</i>{{ article.tags.verbose_name }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                {% for company in companies %}
+                    <div class="card">
+                        <div class="card-content">
+                            <a href="{{ company.get_absolute_url }}"><h4
+                                    class="card-title">{{ company.name }}</h4>
+                            </a>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <div><i class="material-icons">bookmark_border</i>Статии: {{ company.articles.count }}</div>
+                                <div><i class="material-icons">bookmark_border</i>Ивенты: 0</div>
+                                <div><i class="material-icons">bookmark_border</i>Ваканции: 0</div>
+                            </div>
+                            <div class="stats pull-right">
+                                <p class="category"><i
+                                        class="material-icons">thumb_up</i>{{ company.likes }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-content">
+                        <h4 class="card-title">Будущие мероприятия</h4>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h4 class="card-title">Последние Вакансии</h4>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

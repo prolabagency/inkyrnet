@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+
+
+{% block head %}
+    <meta name="description" content="{{ article.description|striptags|truncatechars_html:150 }}">
+    <meta name="keywords" content="">
+    <title>{{ article.title }}</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ article.title }}">
+    <meta property="og:description" content="{{ article.description|striptags|truncatechars_html:150 }}">
+    <meta property="og:image" content="{{ article.image.url }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-content">
+                        <small class="category">{{ article.created_at }}<a
+                                href="user/@{{ article.author }}"> @Alimov Tillo</a></small>
+                        <div id="typography">
+                            <div class="card-title"><h2>{{ article.title }}</h2></div>
+
+                            <div class="card-blog"><p>{{ article.description|striptags|truncatechars:150 }}</p></div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <a href=""><i class="material-icons">bookmark_border</i></a>
+                            <div><i class="material-icons">thumb_up</i> {{ article.likes }}</div>
+                        </div>
+
+                        <div class="stats pull-right">
+                            <p class="category"><i class="material-icons">category</i>{{ article.tags.verbose_name }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
