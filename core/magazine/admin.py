@@ -1,10 +1,10 @@
 from django.contrib import admin
 from .forms import ArticleAdminForm, CompanyAdminForm
-from .models import Article, Company
+from .models import Article, Company, Categories
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ['title', 'likes', 'published', 'slide', 'author']
+    list_display = ['title', 'likes', 'is_published', 'is_slide', 'author']
     list_filter = ['author']
 
     search_fields = ['title', 'description']
@@ -31,5 +31,14 @@ class CompanyAdmin(admin.ModelAdmin):
         obj.save()
 
 
+class CategoriesAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("name",)}
+
+    def save_model(self, request, obj, form, change):
+        obj.author = request.user
+        obj.save()
+
+
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Company, CompanyAdmin)
+admin.site.register(Categories, CategoriesAdmin)

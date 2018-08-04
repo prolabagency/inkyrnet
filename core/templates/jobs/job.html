@@ -1,0 +1,43 @@
+{% extends 'jobs/index.html' %}
+
+
+{% block head %}
+    <meta name="description" content="{{ job.description|striptags|truncatechars_html:150 }}">
+    <meta name="keywords" content="">
+    <title>{{ job.title }}</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ job.title }}">
+    <meta property="og:description" content="{{ job.description|striptags|truncatechars_html:150 }}">
+    <meta property="og:image" content="{{ job.image.url }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-content">
+                        <small class="category">{{ job.created_at }}<a
+                                href="user/@{{ job.author }}"> @Alimov Tillo</a></small>
+                        <div id="typography">
+                            <div class="card-title"><h2>{{ job.title }}</h2></div>
+
+                            <div class="card-blog"><p>{{ job.description|striptags|truncatechars:150 }}</p></div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <a href=""><i class="material-icons">bookmark_border</i></a>
+                            <div><i class="material-icons">thumb_up</i> {{ job.is_going }}</div>
+                        </div>
+
+                        <div class="stats pull-right">
+                            <p class="category"><i class="material-icons">category</i>{{ job.tags.verbose_name }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -5,19 +5,19 @@
         <nav class="pull-left">
             <ul>
                 <li>
-                    <a href="/">Журнал</a>
+                    <a href="{% url 'magazine:index' %}">Журнал</a>
                 </li>
                 <li>
-                    <a href="/events">Ивенты</a>
+                    <a href="{% url 'events:index' %}">Ивенты</a>
                 </li>
                 <li>
-                    <a href="/jobs">Ваканции</a>
+                    <a href="{% url 'jobs:index' %}">Ваканции</a>
                 </li>
                 <li>
-                    <a href="/salaries">Зарплаты</a>
+                    <a href="{% url 'salaries' %}">Зарплаты</a>
                 </li>
                 <li>
-                    <a href="/edu">Образование</a>
+                    <a href="{% url 'edu:index' %}">Образование</a>
                 </li>
             </ul>
         </nav>

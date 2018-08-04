@@ -1,0 +1,31 @@
+{% load static i18n %}
+
+<div class="card card-profile">
+    <div class="photo">
+        <img src="{{ company.logo.url }}">
+    </div>
+    <div class="card-avatar">
+        <a href="{{ company.get_absolute_url }}">
+            <img class="img" src="{{ company.logo.url }}"/>
+        </a>
+    </div>
+    <div class="card-content">
+        <h6 class="category"><a href="{{ company.site }}">{{ company.site }}</a></h6>
+        <h4 class="card-title"></h4>
+        <div class="description">{{ company.description|safe }}</div>
+        <a href="#pablo" class="btn btn-rose btn-round">Follow</a>
+    </div>
+    <div class="card-footer">
+        <ul class="nav">
+            <li>
+                <a href="{% url 'company_articles' company.slug %}">Статии<span class="pull-right">{{ company.company_articles.count }}</span></a>
+            </li>
+            <li>
+                <a href="{% url 'company_events' company.slug %}">Ивенты<span class="pull-right ">{{ company.event_company.count }}</span></a>
+            </li>
+            <li>
+                <a href="{% url 'company_jobs' company.slug %}">Ваканции<span class="pull-right ">{{ company.job_company.count }}</span></a>
+            </li>
+        </ul>
+    </div>
+</div>

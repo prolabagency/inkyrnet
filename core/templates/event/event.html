@@ -1,0 +1,43 @@
+{% extends 'magazine/index.html' %}
+
+
+{% block head %}
+    <meta name="description" content="{{ event.description|striptags|truncatechars_html:150 }}">
+    <meta name="keywords" content="">
+    <title>{{ event.title }}</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ event.title }}">
+    <meta property="og:description" content="{{ event.description|striptags|truncatechars_html:150 }}">
+    <meta property="og:image" content="{{ event.image.url }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-content">
+                        <small class="category">{{ event.created_at }}<a
+                                href="user/@{{ event.author }}"> @Alimov Tillo</a></small>
+                        <div id="typography">
+                            <div class="card-title"><h2>{{ event.title }}</h2></div>
+
+                            <div class="card-blog"><p>{{ event.description|striptags|truncatechars:150 }}</p></div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <a href=""><i class="material-icons">bookmark_border</i></a>
+                            <div><i class="material-icons">thumb_up</i> {{ event.is_going }}</div>
+                        </div>
+
+                        <div class="stats pull-right">
+                            <p class="category"><i class="material-icons">category</i>{{ event.tags.verbose_name }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

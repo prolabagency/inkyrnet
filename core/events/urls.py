@@ -1,10 +1,10 @@
 from django.urls import path
-from magazine.views import *
+from .views import *
 
-app_name = 'magazine'
+app_name = 'events'
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
-    path('<int:pk>-<slug:slug>', ArticleDetailView.as_view()),
     path('companies/', CompanyListView.as_view(), name='companies'),
+    path('<int:pk>-<slug:slug>', EventDetailView.as_view()),
 ]

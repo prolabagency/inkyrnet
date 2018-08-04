@@ -20,6 +20,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
+
                         </div>
                     {% endblock %}
                     <div class="collapse navbar-collapse">
@@ -84,7 +85,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-8">
-                                {% for article in latest_articles %}
+                                {% for article in jobs %}
                                     <div class="card">
                                         <div class="card-content">
                                             <small class="category">{{ article.created_at }}<a
