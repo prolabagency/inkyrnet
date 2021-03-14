@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
-from redactor.fields import RedactorField
 from magazine.models import Company
 from magazine.models import Categories
 
@@ -29,7 +28,7 @@ class Location(models.Model):
         verbose_name_plural = "Место проведении"
 
     name = models.CharField(max_length=200, verbose_name="Названия")
-    description = RedactorField(verbose_name="Описание")
+    description = models.TextField(verbose_name="Описание")
     city = models.ForeignKey(City, on_delete=models.CASCADE, related_name='location_city', verbose_name="Город")
     map = models.CharField(max_length=250, verbose_name="Карта")
     site = models.URLField(verbose_name="Сайт")
@@ -49,7 +48,7 @@ class Event(models.Model):
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, verbose_name="Выбирите категорию")
     title = models.CharField(max_length=200, verbose_name="Заголовок")
     image = models.FileField(verbose_name="Изображение")
-    description = RedactorField(verbose_name="Описание")
+    description = models.TextField(verbose_name="Описание")
     tags = TaggableManager(verbose_name='Теги', blank=True)
     is_published = models.BooleanField(default=True, verbose_name="Опубликовано?")
     location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='events_location',

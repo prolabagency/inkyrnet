@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
-from redactor.fields import RedactorField
 
 
 class Categories(models.Model):
@@ -22,7 +21,7 @@ class Company(models.Model):
     name = models.CharField(max_length=200, verbose_name="Имя")
     logo = models.FileField(verbose_name="Изображение")
     site = models.URLField(verbose_name="Сайт")
-    description = RedactorField(verbose_name="Описание", blank=True)
+    description = models.TextField(verbose_name="Описание", blank=True)
     phone = models.CharField(max_length=20, verbose_name="Телефон", blank=True)
     email = models.EmailField(verbose_name="Электронная почта", blank=True)
     staff = models.ManyToManyField(User, verbose_name="Сотрудники", related_name="company_staff", blank=True)
@@ -48,7 +47,7 @@ class Article(models.Model):
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, verbose_name="Выбирите категорию")
     title = models.CharField(max_length=200, verbose_name="Заголовок")
     image = models.FileField(verbose_name="Изображение")
-    description = RedactorField(verbose_name="Описание")
+    description = models.TextField(verbose_name="Описание")
     tags = TaggableManager(verbose_name='Теги', blank=True)
     is_published = models.BooleanField(default=True, verbose_name="Опубликовано")
     is_slide = models.BooleanField(verbose_name="Слайдер", default=False)

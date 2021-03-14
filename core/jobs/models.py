@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from redactor.fields import RedactorField
 from magazine.models import Company
 from magazine.models import Categories
 from events.models import City
@@ -74,7 +73,7 @@ class Job(models.Model):
     type_time = models.ForeignKey(TypeTime, on_delete=models.CASCADE, related_name='job_time',
                                   verbose_name="Выберите время")
     title = models.CharField(max_length=200, verbose_name="Заголовок")
-    description = RedactorField(verbose_name="Описание")
+    description = models.TextField(verbose_name="Описание")
     date_end = models.DateTimeField(verbose_name="Дата истечения")
     price_min = models.CharField(max_length=30, verbose_name="Цена минимум")
     price_max = models.CharField(max_length=30, verbose_name="Цена максимум")

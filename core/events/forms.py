@@ -1,5 +1,4 @@
 from django import forms
-from redactor.widgets import RedactorEditor
 from dal import autocomplete
 from .models import Location, Event
 
@@ -9,8 +8,7 @@ class EventAdminForm(forms.ModelForm):
         model = Event
         fields = '__all__'
         widgets = {
-            'tags': autocomplete.TaggitSelect2('autocomplete'),
-            'description': RedactorEditor()
+            'tags': autocomplete.TaggitSelect2('autocomplete')
         }
 
 
@@ -19,5 +17,4 @@ class LocationAdminForm(forms.ModelForm):
         model = Location
         fields = '__all__'
         widgets = {
-            'description': RedactorEditor()
         }
