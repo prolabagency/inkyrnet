@@ -1,4 +1,4 @@
-Django==2.0.7
+Django==2.2.24
 django-autocomplete-light==3.2.10
 django-taggit==0.22.2
 django-wysiwyg-redactor==0.5.1
